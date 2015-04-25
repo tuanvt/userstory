@@ -1,10 +1,21 @@
 var express = require('express');
 var bodyParser = require('body-Parser');
 var morgan = require('morgan');
-var config = require('./config.js')
+var config = require('./config.js');
+var mongoose = require('mongoose');
 
 var app = express();
 
+mongoose.connect(config.database, function(err){
+
+	if (err)
+	{
+		console.log(err);
+	}else
+	{
+		console.log("Connected to database");
+	}
+});
 app.use(bodyParser.urlencoded({
   extended: true
 }));
