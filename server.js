@@ -20,13 +20,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-app.user(morgan('dev'));
+app.use(morgan('dev'));
 
-app.use(express.static())
+app.use(express.static(__dirname + '/public'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
 
 var api = require('./app/routes/api')(app,express);
 app.use('/api',api);
+
+app.get('*', function(req,res){
+	res.sendFile(__dirname + '/public/app/views/index.html');
+
+});
 
 app.listen(config.port, function(err){
 	if (err) {

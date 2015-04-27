@@ -59,7 +59,7 @@ module.exports = function(app, express){
 	api.post('/login', function(req,res){
 
 		User.findOne({
-			username: req.body.username;
+			username: req.body.username
 		}).select('password').exec(function(err, user)
 		{
 			if (err) throw err;
@@ -121,8 +121,8 @@ module.exports = function(app, express){
 
 		.post(function(req,res){
 			var story= new Story({
-				creator = req.decoded.id;
-				content = req.body.content;
+				creator : req.decoded.id,
+				content : req.body.content
 			});
 			story.save(function (err){
 				res.send(err);

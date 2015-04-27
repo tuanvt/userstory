@@ -8,4 +8,4 @@ var StorySchema = new Schema ({
 
 });
 
-module.exports = mongoose,model('Story', StorySchema);
+module.exports = mongoose.model('Story', StorySchema);

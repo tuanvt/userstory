@@ -22,7 +22,7 @@ UserSchema.pre('save', function (next) {
  })
 }) ;
 
-UserScheme.methods.comparePassword = function(password)
+UserSchema.methods.comparePassword = function(password)
 {
 	var user = this; 
 
