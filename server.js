@@ -19,6 +19,14 @@ mongoose.connect(config.database, function(err){
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(bodyParser.json());
+app.user(morgan('dev'));
+
+app.use(express.static())
+
+
+var api = require('./app/routes/api')(app,express);
+app.use('/api',api);
 
 app.listen(config.port, function(err){
 	if (err) {
