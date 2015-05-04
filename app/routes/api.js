@@ -13,7 +13,7 @@ function createToken(user)
 		id: user._id,
 		name: user.name,
 		username: user.username
-	}, superSecret, {
+	}, secretKey, {
 		expiresInMinute: 14440
 	});
 
@@ -32,12 +32,20 @@ module.exports = function(app, express){
 			password: req.body.password
 		});
 
+		console.log(req.body);
+    	console.log(req.body.username);
+    	var token = createToken(user);
 		user.save(function(err){
 			if (err) {
 				res.send(err);
 				return;
 			}
-			res.json({message: 'User has been created'});
+
+			res.json({
+				token:token,
+				success: true,
+				message: 'User has been created'
+			});
 
 		})
 	});
@@ -57,10 +65,10 @@ module.exports = function(app, express){
 	})
 
 	api.post('/login', function(req,res){
-
+		console.log("User " + req.body.username + " is loggin in");
 		User.findOne({
 			username: req.body.username
-		}).select('password').exec(function(err, user)
+		}).select('name username password').exec(function(err, user)
 		{
 			if (err) throw err;
 
@@ -70,7 +78,7 @@ module.exports = function(app, express){
 			{
 
 				var validPassword = user.comparePassword(req.body.password);
-
+				console.log(validPassword);
 				if (!validPassword)
 				{
 					res.send({message: "Invalid Password"})
@@ -92,6 +100,7 @@ module.exports = function(app, express){
 	api.use(function (req,res,next){
 		console.log("New user logged in to the app");
 		var token = req.body.toke || req.param['token'] || req.headers['x-access-token'];
+		console.log('Token is ' + token);
 
 		// check if token valid
 		if (token) {

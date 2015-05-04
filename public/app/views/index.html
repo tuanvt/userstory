@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html ng-app="MyApp">
 <head>
+	<base href='/'>
 	<title>User Story</title>
 	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<script src="/bower_components/angularjs/angular.js" type="text/javascript" charset="utf-8" ></script>
-	<script src="app/app.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="/bower_components/angular-route/angular-route.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="app/services/authService.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="app/services/userService.js" type="text/javascript" charset="utf-8" ></script>
+
+	<script src="app/controllers/mainCtrl.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="app/controllers/userCtrl.js" type="text/javascript" charset="utf-8" ></script>
+
+
+	<script src="app/app.routes.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="app/app.js" type="text/javascript" charset="utf-8" ></script>
 
 </head>
-<body>
-<h1>User Stories</h1>
-{{ 2 + 2 }}
+<body ng-controller="MainController as main">
+
+<header>
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-book"></span> User Story</a>
+			</div>
+
+			<ul class="nav navbar-nav">
+				<li><a href="/users"></a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+				<li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
+
+				<li ng-if="main.loggedIn"><a href="#">Hello {{ main.user.username}}</a></li>
+				<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<main class="container">
+	<div  ng-view>
+		
+	</div>
+</main>
 
 </body>
 </html>

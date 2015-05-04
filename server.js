@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
+
 mongoose.connect(config.database, function(err){
 
 	if (err)
@@ -16,18 +17,20 @@ mongoose.connect(config.database, function(err){
 		console.log("Connected to database");
 	}
 });
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
+
+
 app.use(morgan('dev'));
 
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var api = require('./app/routes/api')(app,express);
 app.use('/api',api);
+
+
 
 app.get('*', function(req,res){
 	res.sendFile(__dirname + '/public/app/views/index.html');
