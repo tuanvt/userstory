@@ -4,7 +4,7 @@ angular.module('storyService',[])
 
 	var storyFactory = {};
 
-	storyFactory.createStory = function( storyData){
+	storyFactory.create = function( storyData){
 		return $http.post('/api', storyData)
 	}
 
