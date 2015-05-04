@@ -22,10 +22,18 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading"> Write your story </div>
 				<div class="panel-body">
-					<form ng-submit="story.createStory()">
-						<input class="form-control input-lg" type="text" name="story" ng-model="story.storyData.content" placeholder="...." required/>
+					<form ng-submit="story.create()" method="post">
+						<input class="form-control input-lg" type="text" name="story" ng-model="story.storyData.content" placeholder="...." required />
+						<div class="space">&nbsp;</div>
+							<button type="submit" class="btn btn-success">Post</button>
 
 					</form>
+				</div>
+			</div>
+
+			<div class="panel panel-success">
+				<div class="panel-body" ng-repeat="each in story.stories">
+					<p> {{ each.content }}</p>
 				</div>
 			</div>
 		</div>

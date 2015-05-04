@@ -20,7 +20,7 @@ function createToken(user)
 	return token;
 }
 
-module.exports = function(app, express){
+module.exports = function(app, express,io){
 
 	var api = express.Router();
 
@@ -133,12 +133,24 @@ module.exports = function(app, express){
 				creator : req.decoded.id,
 				content : req.body.content
 			});
-			story.save(function (err){
-				res.send(err);
-				return;
+			story.save(function (err,newStory){
+				if (err)
+				{
+
+					res.send(err);
+
+				}
+				else
+				{
+					io.emit('story', newStory )
+					res.json({message : 'New Story Created'});
+				}
+				
+				console.log(err);
+				
 			})
 
-			res.json({message : 'New Story Created'});
+			
 		})
 		.get(function(req,res){
 			Story.find({creator : req.decoded.id}, function (err,stories)
