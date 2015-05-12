@@ -8,12 +8,12 @@ angular.module('storyService',[])
 		return $http.post('/api', storyData)
 	}
 
-	storyFactory.allStory = function()
+	storyFactory.allStories = function()
 	{
-		return $http.get('/api');
+		return $http.get('/api/all_stories');
 	}
 
-	return storyFactory
+	return storyFactory;
 
 })
 .factory('socketio', function($rootScope){

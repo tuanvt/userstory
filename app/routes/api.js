@@ -24,6 +24,18 @@ module.exports = function(app, express,io){
 
 	var api = express.Router();
 
+	api.get('/all_stories', function (req,res){
+		Story.find({}, function(err, stories){
+
+			if(err)
+			{
+				res.send(err);
+				return;
+			}
+			res.json(stories);
+		})
+	})
+
 	api.post('/signup', function(req, res){
 		var user = new User(
 		{
@@ -84,7 +96,7 @@ module.exports = function(app, express,io){
 					res.send({message: "Invalid Password"})
 				} else
 				{
-					//// token 
+					//// token
 					var token = createToken(user);
 					res.json({
 						success: true,
@@ -93,7 +105,7 @@ module.exports = function(app, express,io){
 					});
 
 				}
-			} 
+			}
 		});
 	});
 
@@ -114,7 +126,7 @@ module.exports = function(app, express,io){
 					req.decoded=decoded;
 					next();
 
-				} 
+				}
 
 			});
 		} else
@@ -145,12 +157,12 @@ module.exports = function(app, express,io){
 					io.emit('story', newStory )
 					res.json({message : 'New Story Created'});
 				}
-				
+
 				console.log(err);
-				
+
 			})
 
-			
+
 		})
 		.get(function(req,res){
 			Story.find({creator : req.decoded.id}, function (err,stories)
