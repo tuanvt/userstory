@@ -1,4 +1,4 @@
-<div class="jumbotron  text-center" ng-if="!main.loggedIn">
+<!-- <div class="jumbotron  text-center" ng-if="!main.loggedIn">
 	<div>
 		<h1> If you have balls Sign up !</h1>
 
@@ -42,4 +42,28 @@
 	<div class="col-md-3">
 
 	</div>
+</div> -->
+<header class="top-bar">
+	<h2 class="top-bar__headline">Latest articles</h2>
+	<div class="filter">
+		<span>Filter by:</span>
+		<span class="dropdown">Popular</span>
+	</div>
+</header>
+<div ng-controller="StoryController as story">
+	<div ng-repeat="each in story.stories">
+			<a class="grid__item" href="#">
+				<h2 class="title title--preview"> {{ each.title }}</h2>
+				<div class="loader"></div>
+				<span class="category"></span>
+				<div class="meta meta--preview">
+					<img class="meta__avatar" src="img/authors/1.png" alt="author01" /> 
+					<span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span>
+					<span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
+				</div>
+			</a>		
+	</div>
 </div>
+
+
+

@@ -1,5 +1,7 @@
 var User = require('../models/user');
-var Story = require('../models/story')
+var Story = require('../models/story');
+var Category = require('../models/category');
+
 
 var  config = require('../../config');
 
