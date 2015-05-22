@@ -4,7 +4,7 @@ angular.module('storyCtrl',['storyService'])
 	{
 		var vm = this;
 
-		Story.allStory().success(function(data){
+		Story.allStories().success(function(data){
 
 			vm.stories = data;
 

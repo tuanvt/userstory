@@ -12,13 +12,19 @@
 	<script src="/bower_components/angularjs/angular.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="/bower_components/angular-route/angular-route.js" type="text/javascript" charset="utf-8" ></script>
 	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+	<!-- Services -->
 	<script src="app/services/authService.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="app/services/userService.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="app/services/storyService.js" type="text/javascript" charset="utf-8" ></script>
 
+<!-- Controllers -->
 	<script src="app/controllers/mainCtrl.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="app/controllers/userCtrl.js" type="text/javascript" charset="utf-8" ></script>
 	<script src="app/controllers/storyCtrl.js" type="text/javascript" charset="utf-8" ></script>
+
+<!-- Directives -->
+	<script src="app/directives/reverse.js" type="text/javascript" charset="utf-8" ></script>
 
 
 
@@ -51,12 +57,12 @@
 </header>
 <main class="container">
 	<div  ng-view>
-		
+
 	</div>
 </main>
  -->
 <!-- Start of the container -->
-<div class="container"> 
+<div class="container">
 	<button id="menu-toggle" class="menu-toggle"><span>Menu</span></button>
 	<!-- Sidebar Start -->
 	<div id="theSidebar" class="sidebar">

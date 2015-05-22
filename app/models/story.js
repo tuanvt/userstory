@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var Category = require('../models/category');
+var CategorySchema = require('../models/category');
 
 var StorySchema = new Schema ({
 	creator : { type: Schema.Types.ObjectId, ref : 'User'},

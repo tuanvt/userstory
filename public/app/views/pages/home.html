@@ -9,7 +9,7 @@
 		<p>Login to write your story </p>
 		<a href='/login' class="btn btn-primary">Login</a>
 
-	</div>	
+	</div>
 </div>
 
 <div class="row" ng-if="main.loggedIn">
@@ -51,17 +51,17 @@
 	</div>
 </header>
 <div ng-controller="StoryController as story">
-	<div ng-repeat="each in story.stories">
+	<div ng-repeat="each in story.stories | reverse">
 			<a class="grid__item" href="#">
 				<h2 class="title title--preview"> {{ each.title }}</h2>
 				<div class="loader"></div>
 				<span class="category"></span>
 				<div class="meta meta--preview">
-					<img class="meta__avatar" src="img/authors/1.png" alt="author01" /> 
+					<img class="meta__avatar" src="img/authors/1.png" alt="author01" />
 					<span class="meta__date"><i class="fa fa-calendar-o"></i> 9 Apr</span>
 					<span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
 				</div>
-			</a>		
+			</a>
 	</div>
 </div>
 

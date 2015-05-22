@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var CategorySchema = new Schema ({
 	creator : { type: Schema.Types.ObjectId, ref : 'User'},
 	title: String,
-	colour: String, 
+	colour: String,
 	created : { type: Date, default: Date.Now}
 });
 
